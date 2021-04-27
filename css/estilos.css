@@ -1,4 +1,17 @@
 body{
-	color: pink;
+	color: #333;
 	font-family: "Arial";
+	text-align: left;
+	margin:0;
+	padding: 0;
+	font-size: 16px;
+}
+.container{
+	width: 70%;
+	padding: 1em;
+	border: 1px solid #dddddd;
+	margin:0 auto;
+}
+.container h1{
+	font-size: 20px;
 }
