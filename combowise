@@ -1,109 +1,134 @@
 
 <style>
-  .cpapp-combo-vs {
-    margin: 15px 0 15px 0;
-    border: 1px solid #f0f0f0;
-    border-radius: 2px;
+  .combowise-box {
     width: 100%;
-    transition: .2s ease-in-out;
+    transition: 0.5ms;
+    padding: 5px;
   }
-  .cpapp-combo-vs-header {
-    font-weight: 500;
-    font-size: 24px;
-    padding: 15px 0 10px 15px;
-    text-transform: lowercase;
-    text-align: center;
+  .combowise-row {
+    margin-bottom: 15px;
   }
-  .cpapp-combo-vs-body {
-    padding-left: 10px;
-    padding-right: 10px;
+  .combowise-thumbnail {
+    display: flex;
   }
-  .cpapp-combo-vs-col {
-  
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .cpapp-combo-vs-thumb {
-    width: 40%;
-    padding: 15px;
+  .combowise-thumbnail-img {
+    width: 35%;
+    border-radius: 15px;
+    overflow: hidden;
     position: relative;
-    -webkit-filter: none!important;
-    filter: none!important;
     max-height: 180px;
   }
- 
-  .cpapp-combo-vs-caption-title {
-    padding-left: 5px;
-    padding-bottom: 5px;
-    overflow: hidden;
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-  .combowise-soldout {
-    color: red;
-  }
-  .combowise-error {
-    color: red;
-  }
-  
-  .combowise-hide {
-    display: none;
-  }
-  
-  .combowise-selector {
+  .combowise-thumbnail-img img {
+  	max-height: 100%;
     width: 100%;
   }
+  .combowise-variants {
+    display: flex;
+    width: 65%;
+    padding-left: 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
   
-  @media only screen and (max-width: 500px) {
-    .cpapp-combo-vs {
-      text-align: center;
-    }
-    .cpapp-combo-vs-col {
-      flex-direction: column;
-      align-items: center;
-    }
-    .cpapp-combo-vs-caption {
-      width: 100%;
-      padding-left: 15px;
-      padding-right: 15px;
-      padding-bottom: 15px;
-    }
-    .cpapp-combo-vs-thumb {
-      max-height: initial;
-      width: 80%;
-    } 
-    .cpapp-combo-vs-caption-title {
-      text-align: left;
-    }
+  .combowise-variants-item {
+    padding: 10px 5px;
+  }
+  .combowise-variants-item span {
+    padding: 5px 10px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .combowise-variants-item span:hover {
+    background-color: rgb(227 227 227 / 50%);
+    box-shadow: 1px 1px 6px #eee;
+    border: 2px solid #fff;
+  }
+  
+  .combowise-selected {
+    border: 2px solid black !important;
   }
   
   .combowise-heading {
-    text-align: center;
+  	margin-bottom: 10px !important;
+    font-weight: 600;
+    font-size: 18px;
   }
   
-  .combowise-box-header {
-    padding-bottom: 10px;
+  .combowise-product-title {
+  	margin-bottom: 5px !important;
+    font-weight: 600;
   }
+  
+  .combowise-error {
+  	color: red;
+  }
+  
+  .combowise-hide {
+  	display: none;
+  }
+  
+  .combowise-soldout {
+  	opacity: 0.6;
+    cursor: not-allowed !important;
+  }
+  
+  .combowise-overlaped-img {
+  	position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .combowise-overlaped-img img {
+  	max-width: 50%;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .combowise-box {
+    	text-align: center;
+    }
+    .combowise-thumbnail {
+      flex-direction: column;
+    }
+    .combowise-thumbnail-img {
+      max-width: 100%;
+      max-height: initial;
+      align-self: center;
+    }
+    
+    .combowise-variants {
+    	width: 100%;
+    }
+    .combowise-variants {
+      padding-left: 0px;
+      justify-content: center;
+    }
+  }
+
   /* Custom by thomy */
   .cpapp-combo-vs{
     border:none;
   }
-  .cpapp-combo-vs-body{
+  .combowise-box-body{
     padding:0;
   }
-  .cpapp-combo-vs-body .cpapp-combo-vs-row{
+  .combowise-box-body .cpapp-combo-vs-row{
     display:none;
   }
-  .cpapp-combo-vs-body .grouppacks{
+  .combowise-box-body .grouppacks{
     position:relative;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
   }
-  .cpapp-combo-vs-body .grouppacks label{
+  .combowise-box-body .grouppacks label{
     font-weight:900;
   }
-  .cpapp-combo-vs-body .grouppacks .selecteditem {
+  .combowise-box-body .grouppacks .selecteditem {
     padding: 10px;
     border-radius: 2px;
     border: solid 1px #ccc;
@@ -113,7 +138,7 @@
     display: flex;
     position:relative;
   }
-  .cpapp-combo-vs-body .grouppacks .selecteditem:after{
+  .combowise-box-body .grouppacks .selecteditem:after{
     content:"";
     position:absolute;
     transform: translateY(-50%) rotate(0deg);
@@ -126,10 +151,10 @@
     border-top: 6px solid #424245;
     transition:all 300ms linear;
   }
-  .cpapp-combo-vs-body .grouppacks.visible .selecteditem:after{
+  .combowise-box-body .grouppacks.visible .selecteditem:after{
     transform: translateY(-50%) rotate(180deg);
   }
-  .cpapp-combo-vs-body .grouppacks .listOptions{
+  .combowise-box-body .grouppacks .listOptions{
     border: solid 1px #ccc;
     border-top: none;
     list-style: none;
@@ -144,11 +169,11 @@
     max-height:0;
     display: none;
   }
-  .cpapp-combo-vs-body .grouppacks.visible .listOptions{
+  .combowise-box-body .grouppacks.visible .listOptions{
     display: block;
     max-height: 360px;
   }
-  .cpapp-combo-vs-body .grouppacks .listOptions li{
+  .combowise-box-body .grouppacks .listOptions li{
     list-style:none;
     padding: 10px;
     border-bottom: solid 1px #ddd;
@@ -158,74 +183,79 @@
     cursor: pointer;
     transition:all 0.25s ease-in-out;
   }
-  .cpapp-combo-vs-body .grouppacks .listOptions li:hover,.cpapp-combo-vs-body .grouppacks .listOptions li.active{
-  background-color:#f6f6f6;
+  .combowise-box-body .grouppacks .listOptions li:hover,.combowise-box-body .grouppacks .listOptions li.active{
+	background-color:#f6f6f6;
   }
-  .cpapp-combo-vs-body .grouppacks .listOptions li img, .cpapp-combo-vs-body .grouppacks .selecteditem img{
+  .combowise-box-body .grouppacks .listOptions li img, .combowise-box-body .grouppacks .selecteditem img{
     width:42px;
     border-radius: 3px;
     margin-right: 5px;
     float:left;
   }
-  .cpapp-combo-vs-body .grouppacks .listOptions li small, .cpapp-combo-vs-body .grouppacks .selecteditem small{
+  .combowise-box-body .grouppacks .listOptions li small, .combowise-box-body .grouppacks .selecteditem small{
     display:block;
   }
-  
-  
 </style>
 
-<div class="cpapp-combo-vs">
-  <div class="cpapp-combo-vs-body">
-    {% for meta in cp_metas %}
+<div class="combowise-box">
+  <div class="combowise-box-body">
+    <div class="combowise-col">
+      {% for meta in cp_metas %}
+      {% assign index1 = forloop.index %}
 
-    {% assign handle = meta|last %}
+      {% assign pHandlev = meta | last | split: ":" %}
 
-    {% assign p = all_products[handle] %}
-    <div class="cpapp-combo-vs-row">  
-      <div class="cpapp-combo-vs-col">
-        <div class="cpapp-combo-vs-caption">
-          <a title="{{ p.title }}" class="cpapp-combo-vs-caption-title" target="_blank" rel="noopener noreferrer" href="{{ p.handle }}">{{ p.title }}</a>
-          <div class="cpapp-combo-vs-variant-select">
-            <select id="slc{{p.id}}" class="combowise-selector" value="" onChange="combowiseVariantChange(this)">
-              <option value="{{ p.id }}" selected>Select variant</option>
-              {% if p.has_only_default_variant %}
-              <option 
-                      value="{{ p.id }}-{{ p.variants[0].id }}" 
-                      data-title="{{ p.title }}" 
-                      data-sku="{{ p.variants[0].sku }}" 
-                      {% if p.available == false %}disabled{% endif %}
-                      >{{ p.title }}{% if p.available == false %} - Sold out{% endif %}</option>
-              {% else %}
-              {% for v in p.variants %}
-              {% capture title %}
-              {{ p.title | escape }} {{ v.title | escape| replace: 'Default Title', '' }}
-              {% endcapture %}
-              
-              <option 
-                      value="{{p.id}}-{{ v.id }}" 
-                      data-title="{{ title|strip }}" 
-                      data-sku="{{ v.sku }}" 
-                      {% if v.available == false %}disabled{% endif %}
-                      >{{ v.title }}{% if v.available == false %} - Sold out{% endif %}</option>
-              {% endfor %}
-              {% endif %}
-            </select>
+      {% assign p = all_products[pHandlev[0]] %}
+      <div class="combowise-row">
+        <p class="combowise-product-title">{{ p.title }}</p>
+        <div class="combowise-thumbnail">
+          <div class="combowise-thumbnail-img">
+          	<img alt="{{ p.title }}" src="{{ p.featured_image | img_url: '200x' }}">
+            <div class="combowise-overlaped-img"></div>
           </div>
-          {% if p.available == false %}
-          <p class="combowise-soldout">Sold Out</p>
-          {% endif %}
+          <div class="combowise-variants">
+            {% if p.has_only_default_variant %}
+              {% assign v = p.variants[0] %}
+
+              <div class="combowise-variants-item">
+                <span 
+                      id="combowise_{{ index1 }}_1" 
+                      data-image="" 
+                      onclick="{% if p.available == true %}combowiseSelectionChanged({{ index1 }}, 1, {{ p.id }}, {{ v.id }}, `{{ title|strip }}`, `{{ v.sku }}`){% endif %}" 
+                      class="{% if p.available == false %}combowise-soldout{% endif %}"
+                      >{{ p.title | escape }}{% if p.available == false %} (Sold out){% endif %}</span>
+              </div>
+            {% else %}
+              {% for v in p.variants %}
+
+                {% capture title %}
+                {{ p.title | escape }} {{ v.title | escape| replace: 'Default Title', '' }}
+                {% endcapture %}
+
+                {% assign index2 = forloop.index %}
+                <div class="combowise-variants-item">
+                  <span 
+                        id="combowise_{{ index1 }}_{{ index2 }}" 
+                        data-image="{{ v.image.src | img_url: '80x' }}" 
+                        onclick="{% if v.available == true %}combowiseSelectionChanged({{ index1 }}, {{ index2 }}, {{ p.id }}, {{ v.id }}, `{{ title|strip }}`, `{{ v.sku }}`){% endif %}" 
+                        class="{% if v.available == false %}combowise-soldout{% endif %}"
+                        >{{ v.title }}{% if v.available == false %} (Sold out){% endif %}</span>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
 
-  {%- capture pack_labels -%}
+    {%- capture pack_labels -%}
       {%- for meta in cp_metas -%}
         {%- assign handle = meta|last -%}
         {%- assign p = all_products[handle] -%}
           {%- for tag in p.tags -%}
             {%- if tag contains 'pack__' -%}
-              {{tag}}||
+            	{{tag}}||
             {%- endif -%}
           {%- endfor -%}
       {%- endfor -%}
@@ -235,8 +265,6 @@
 
     {% assign groupspack = pack_labelsuniq | uniq | join: "||"%}
     {% assign arraygroupspack = groupspack | split: "||"%}
-
-
     
     {%- for group in arraygroupspack -%}
       {% assign selecteditem = false %}
@@ -245,7 +273,7 @@
         <label>{{group| remove: "pack__"}}</label>
         <div>Elige color y talla</div>
         <a class="selecteditem">
-      {%- for meta in cp_metas -%}
+          {%- for meta in cp_metas -%}
               {% assign groupprint = false %}
               {% assign handle = meta|last %}
               {% assign p = all_products[handle] %}
@@ -258,7 +286,7 @@
 
               {%- if groupprint -%}
                 {% if p.has_only_default_variant and p.available == true %}
-              {% assign selecteditem = true %}
+    	      	{% assign selecteditem = true %}
                   <div 
                       data-value="{{ p.id }}-{{ p.variants[0].id }}" 
                       data-title="{{ p.title }}" 
@@ -266,10 +294,10 @@
                       {% if p.available == false %}disabled{% endif %}
                       >{{ p.title }}{% if p.available == false %} - Sold out{% endif %}
                    </div>
-                {% break %}
+			          {% break %}
                   {% else %}
                     {% for v in p.variants %}
-                  {% if v.available %}
+          			  {% if v.available %}
                         {% assign selecteditem = true %}
                         {% capture title %}
                           {{ p.title | escape }} {{ v.title | escape| replace: 'Default Title', '' }}
@@ -283,17 +311,17 @@
                           <img src="{{v.image | img_url:"150x150", crop: 'center' }}"/>
                           <label>{{ p.title }} - {{ v.title }}</label>
                           <small>{{p.price | money}}</small>
-                        </div>
-                  {% break %}
-                  {% endif %}
-                
+                      	</div>
+          				{% break %}
+          			  {% endif %}
+			          
                     {% endfor %}
                   {% endif %}
               {%- endif -%}
-            
-              {% if selecteditem %}
-                {% break %}
-              {% endif %}
+          	
+          	  {% if selecteditem %}
+          	  	{% break %}
+          	  {% endif %}
           
             {%- endfor -%}
         </a>
@@ -301,26 +329,31 @@
           {%- for meta in cp_metas -%}
             {% assign groupprint = false %}
             {% assign handle = meta|last %}
-        {% assign p = all_products[handle] %}
-            
+
+          	{% assign index1 = forloop.index %}
+          
+		    {% assign p = all_products[handle] %}
+          	
             {%- for tag in p.tags -%}
               {%- if tag contains group -%}
-              {%- assign groupprint = true -%}
-              {%- endif -%}
+          		{%- assign groupprint = true -%}
+          	  {%- endif -%}
             {%- endfor -%}
-            
-            {%- if groupprint -%}
+          	
+          	{%- if groupprint -%}
           
               {% if p.has_only_default_variant %}
                 <li data-select="{{p.id}}"
                     data-value="{{ p.id }}-{{ p.variants[0].id }}" 
                     data-title="{{ p.title }}" 
-                    data-sku="{{ p.variants[0].sku }}" 
+                    data-sku="{{ p.variants[0].sku }}"
+                    onclick="{% if p.available == true %}combowiseSelectionChanged({{ index1 }}, 1, {{ p.id }}, {{ v.id }}, `{{ title|strip }}`, `{{ v.sku }}`){% endif %}"
                     {% if p.available == false %}disabled{% endif %}
                     >{{ p.title }}{% if p.available == false %} - Sold out{% endif %}
                  </li>
                 {% else %}
                   {% for v in p.variants %}
+          			{% assign index2 = forloop.index %}
                     {% capture title %}
                       {{ p.title | escape }} {{ v.title | escape| replace: 'Default Title', '' }}
                     {% endcapture %}
@@ -329,53 +362,76 @@
                         data-title="{{ title|strip }}" 
                         data-sku="{{ v.sku }}" 
                         {% if v.available == false %}disabled{% endif %}
+                        onclick="{% if v.available == true %}combowiseSelectionChanged({{ index1 }}, {{ index2 }}, {{ p.id }}, {{ v.id }}, `{{ title|strip }}`, `{{ v.sku }}`){% endif %}" 
                         >
                       <img src="{{v.image | img_url:"150x150", crop: 'center' }}"/>
                       <label>{{ p.title }} - {{ v.title }}{% if v.available == false %} - Sold out{% endif %}</label>
                       <small>{{p.price | money}}</small>
-                </li>
+                    </li>
                   {% endfor %}
                 {% endif %}
-            {%- endif -%}
+          	{%- endif -%}
           
           {%- endfor -%}
         </ul>
       </div>
     {%- endfor -%}
-
     
     
-    <div class="combowise-box-header">
-      <p class="combowise-heading combowise-hide">Please select any %count% products</p>
-    </div>
+  </div>
+  
+  <div class="combowise-box-header">
+  	<p class="combowise-heading combowise-hide">Please select any %count% products</p>
   </div>
 </div>
-
-<script>
-  
-  let combowiseSelectedItems = [];
+<script>  
   const combowiseConfig = JSON.parse('{{ config }}');
-                                                                     
-  function combowiseVariantChange() {
-    combowiseSelectedItems = [];
-    const selected_variants = document.querySelectorAll('.combowise-selector');
-    
-    const nodes = Array.prototype.slice.call(selected_variants, 0);
-    nodes.map(function(e) {
-      if (e.options[e.selectedIndex].value) {
-        combowiseSelectedItems.push({
-          id: e.options[e.selectedIndex].value,
-          title: e.options[e.selectedIndex].getAttribute('data-title'),
-          sku: e.options[e.selectedIndex].getAttribute('data-sku')
-        });
+
+  let combowiseSelectedItems = [];
+  function combowiseSelectionChanged(index1, index2, productId, variantId, title, sku) {
+    for(let i = 0; i < combowiseSelectedItems.length; i++) {
+      if (combowiseSelectedItems[i].index1 == index1 && combowiseSelectedItems[i].index2 != index2) {
+      	return;
       }
-    });
-  
-    console.log("+++++++++++++++++++++selected_variants+++++++++++++++++++++");
-  console.log(combowiseSelectedItems);
-    console.log(combowiseConfig);
-    console.log(combowiseSelectedItems.length+" == "+combowiseConfig.boxLock);
-    console.log("+++++++++++++++++++++ENDselected_variants+++++++++++++++++++++");
+    }
+    
+    const id = `${productId}-${variantId}`;
+    
+    const ele = document.getElementById(`combowise_${index1}_${index2}`);
+   
+    if (ele.classList.contains('combowise-selected')) {
+      combowiseSelectedItems = combowiseSelectedItems.filter(e => (e.index1 == index1 && e.index2 == index2) ? false : true );
+      ele.classList.remove('combowise-selected');
+      const thumbnailDivImgEle = ele.parentNode.parentNode.parentNode.querySelector('.combowise-overlaped-img').querySelector(`#combowise_img_${index1}_${index2}`);
+      if (thumbnailDivImgEle) {
+        thumbnailDivImgEle.parentNode.removeChild(thumbnailDivImgEle);
+      }
+    } else {
+      const image = ele.getAttribute('data-image');
+      
+      if (image && image.indexOf('no-image') === -1) {
+      	const thumbnailDivEle = ele.parentNode.parentNode.parentNode.querySelector('.combowise-overlaped-img');
+        
+        const x = document.createElement("img");
+        x.setAttribute("src", image);
+        x.setAttribute("alt", title);
+        x.setAttribute("id", `combowise_img_${index1}_${index2}`);
+        x.addEventListener('click', function() {
+          window.open(image, '_blank');
+        });
+        
+        thumbnailDivEle.appendChild(x);
+      }
+      
+      ele.classList.add('combowise-selected');
+      combowiseSelectedItems.push({
+      	index1,
+        index2,
+        title,
+        sku,
+        id
+      });
+    }
     
     if(combowiseSelectedItems.length == combowiseConfig.boxLock) {
       combowiseToggleBtns(false);
@@ -386,10 +442,25 @@
     updateCombowiseInput();
   }
   
+  function combowiseToggleBtns(bool) {
+    const combowiseAllBtns = document.querySelectorAll('button');
+    for (let i = 0; i < combowiseAllBtns.length; i++) {
+      combowiseAllBtns[i].disabled = bool;
+    }
+    
+    if (bool) {
+      const errorEle = document.querySelector('.combowise-heading');
+      errorEle.classList.add('combowise-error');
+      errorEle.focus();
+      
+    } else {
+      document.querySelector('.combowise-heading').classList.remove('combowise-error');
+    }
+  }
+  
   function updateCombowiseInput() {
     
     const existingEleold = document.querySelectorAll('.combowise-box-input');
-    console.log("===============existingEleold=================");
     console.log(existingEleold);
     
     for (let i = 0; i < existingEleold.length; i++) {
@@ -397,7 +468,6 @@
     }
     
     const existingEleRemoved = document.querySelectorAll('.combowise-box-input');
-    console.log("===============existingEleRemoved=================");
     console.log(existingEleRemoved);
     
     // adding childs
@@ -418,30 +488,11 @@
       x.setAttribute("class", "combowise-box-input");
       
       
-      document.querySelector('.cpapp-combo-vs').append(x);
+      document.querySelector('.combowise-box').append(x);
     }
     
     const existingEleNew = document.querySelectorAll('.combowise-box-input');
-    console.log("===============existingEleNew=================");
     console.log(existingEleNew);
-  }
-  
-  function combowiseToggleBtns(bool) {
-    const combowiseAllBtns = document.querySelectorAll('button');
-    for (let i = 0; i < combowiseAllBtns.length; i++) {
-      combowiseAllBtns[i].disabled = bool;
-    }
-    
-    if (bool) {
-      const errorEle = document.querySelector('.combowise-heading');
-      errorEle.classList.add('combowise-error');
-      errorEle.classList.remove('combowise-hide');
-      errorEle.focus();
-      
-    } else {
-      document.querySelector('.combowise-heading').classList.remove('combowise-error');
-      document.querySelector('.combowise-heading').classList.add('combowise-hide');
-    }
   }
   
  (function() {
@@ -453,11 +504,12 @@
       console.info('Combowise: dom is ready');
       
       if(combowiseSelectedItems.length != combowiseConfig.boxLock) {
-        combowiseToggleBtns(true);
+      	combowiseToggleBtns(true);
       }
       
       let headingEle = document.querySelector('.combowise-heading');
       headingEle.innerHTML = headingEle.innerHTML.replace('%count%', combowiseConfig.boxLock);
+      headingEle.classList.remove('combowise-hide');
 
       const paymentBtnEle = document.querySelector('.shopify-payment-button');
 
@@ -465,15 +517,16 @@
         paymentBtnEle.style.display = "none";
       }
       
+      
       //Thomy Custom
       const selecteditems = document.querySelectorAll('.selecteditem');
       const ulcont = document.querySelectorAll('.grouppacks');
       
       selecteditems.forEach((item)=>{
-    item.addEventListener("click", ()=>{
+		  item.addEventListener("click", ()=>{
           console.log(item.parentNode);
           if(item.parentNode.classList.contains("visible")){
-            //item.nextElementSibling.classList.remove("visible");
+          	//item.nextElementSibling.classList.remove("visible");
             ulcont.forEach((ulitem)=>{
               ulitem.classList.remove("visible");
             });
@@ -486,16 +539,16 @@
         }, false);
       });
 
-      const listOptions = document.querySelectorAll('.listOptions li');
-      listOptions.forEach((item)=>{
-    item.addEventListener("click", ()=>{
+   	  const listOptions = document.querySelectorAll('.listOptions li');
+   	  listOptions.forEach((item)=>{
+		item.addEventListener("click", ()=>{
           let refSelect = item.dataset.select;
           let refSelectOpt = item.dataset.value;
           console.log(item);
           console.log(refSelect);
 
           if(item.classList.contains("active")){
-          //no hago nada
+        	//no hago nada
           }else{
             let siblings = Array.prototype.filter.call(item.parentNode.children, function(child){
               return child !== item;
@@ -503,10 +556,12 @@
             siblings.forEach((sibling)=>{
               sibling.classList.remove("active");
             });
+
             item.classList.add("active");
             //Close group list
             item.closest(".grouppacks").classList.remove("visible");
             
+            /*
             let getselectbyid = document.querySelector('#slc'+refSelect);
             //Set option value
             getselectbyid.value = refSelectOpt;
@@ -515,11 +570,14 @@
             event.initEvent('change', true, false);
             getselectbyid.dispatchEvent(event);
             //combowiseVariantChange(getselectbyid);
+            */
           }
           
           
         }, false);
       });
+
+      
 
     } else setTimeout(arguments.callee, 100)
 
